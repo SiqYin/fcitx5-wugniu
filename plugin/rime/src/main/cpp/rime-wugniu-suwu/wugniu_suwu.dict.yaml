@@ -95,6 +95,7 @@ import_tables:
 師	sy1
 獅	sy1
 螄	sy1
+鰤	sy1
 梳	sy1
 篩	sy1
 鍶	sy1
@@ -1388,6 +1389,7 @@ import_tables:
 蹉	tshu1
 嵯	tshu1
 芻	tshu1
+犓	tshu1
 楚	tshu3
 礎	tshu3
 憷	tshu3
@@ -3243,13 +3245,14 @@ import_tables:
 蒐	seu1
 颼	seu1
 艘	seu1
+獀	seu1
 溲	seu1
 收	seu1
+奢	seu1
 修	sieu1
 脩	sieu1
 羞	sieu1
 饈	sieu1
-奢	seu1
 擻	seu3
 藪	seu3
 叟	seu3
@@ -4630,6 +4633,7 @@ import_tables:
 姩	gnie6
 掀	shie1
 軒	shie1
+蓒	shie1
 妗	shie1
 險	shie3
 玁	shie3
@@ -5144,6 +5148,7 @@ import_tables:
 驂	tshoe1
 餐	tshoe1
 湌	tshoe1
+飡	tshoe1
 躥	tshoe1
 攛	tshoe1
 穿	tshoe1
@@ -5237,6 +5242,7 @@ import_tables:
 繕	zoe6
 膳	zoe6
 墡	zoe6
+僐	zoe6
 鄯	zoe6
 譱	zoe6
 擅	zoe6
@@ -5907,6 +5913,7 @@ import_tables:
 鈁	faon1
 枋	faon1
 淓	faon1
+邡	faon1
 訪	faon3
 紡	faon3
 仿	faon3
@@ -5917,6 +5924,7 @@ import_tables:
 倣	faon3
 髣	faon3
 放	faon5
+邡	faon5
 房	vaon2
 亡	vaon2
 防	vaon2
@@ -7226,6 +7234,7 @@ import_tables:
 䌥	in3
 癮	in3
 檃	in3
+讔	in3
 飲	in3
 影	in3
 郢	in3
@@ -9432,6 +9441,8 @@ import_tables:
 矍	cioq7
 攫	cioq7
 钁	cioq7
+玃	cioq7
+貜	cioq7
 鋦	cioq7
 傕	cioq7
 確	chioq7
