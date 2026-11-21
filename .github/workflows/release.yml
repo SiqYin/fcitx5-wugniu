@@ -12,16 +12,33 @@ jobs:
   release:
     runs-on: ubuntu-24.04
     steps:
-      - name: Find latest green build run
+      - name: Wait for green build of this commit
         id: run
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           SHA="${{ github.sha }}"
-          RUN=$(gh run list -R "${{ github.repository }}" --workflow build-custom.yml --status success --limit 20 --json databaseId,headSha \
-            | jq -r --arg sha "$SHA" '(.[] | select(.headSha == $sha) | .databaseId) // (.[0].databaseId)')
+          # 只认 tag 推送前后（含同一次 push 触发）创建的构建，防止把旧版本号产物挂到新 Release；
+          # 发布时须 master 与 tag 同一次 push，构建发生在 tag 已存在之后，APK versionName 即为 tag 本身
+          CUTOFF=$(date -u -d '90 seconds ago' +%Y-%m-%dT%H:%M:%SZ)
+          RUN=""
+          for i in $(seq 1 60); do
+            RUN=$(gh run list -R "${{ github.repository }}" --workflow build-custom.yml --status success --limit 30 \
+              --json databaseId,headSha,createdAt \
+              | jq -r --arg sha "$SHA" --arg cutoff "$CUTOFF" \
+                '(.[] | select(.headSha == $sha and .createdAt >= $cutoff) | .databaseId) // ""')
+            if [ -n "$RUN" ]; then
+              echo "Found green build run: $RUN"
+              break
+            fi
+            echo "Waiting for a green build of $SHA (attempt $i/60)..."
+            sleep 120
+          done
+          if [ -z "$RUN" ]; then
+            echo "::error::No green build-custom run found for $SHA within 2 hours (build not triggered, failed, or still running)"
+            exit 1
+          fi
           echo "run=$RUN" >> "$GITHUB_OUTPUT"
-          echo "Using run: $RUN"
 
       - name: Download artifacts
         env:

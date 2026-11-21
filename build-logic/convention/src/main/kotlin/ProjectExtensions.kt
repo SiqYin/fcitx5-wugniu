@@ -43,7 +43,8 @@ val Project.buildToolsVersion
 
 val Project.buildVersionName
     get() = ep("BUILD_VERSION_NAME", "buildVersionName") {
-        runCmd("git describe --tags --long --always", Versions.baseVersionName)
+        // no --long: built on a tagged commit, versionName equals the tag exactly (e.g. v1.5.9)
+        runCmd("git describe --tags --always", Versions.baseVersionName)
     }
 
 val Project.buildCommitHash
